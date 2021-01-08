@@ -13,6 +13,7 @@ using namespace std;
  */
 struct coordinate {num x; num y; num z;};
 
+
 class Shape {
 
     public:
@@ -36,7 +37,6 @@ class Shape {
          * @return  bool    Determines is there is an overlap 
          */
         virtual bool overlap(Shape *rhs) = 0;
-
 
 
     protected:
