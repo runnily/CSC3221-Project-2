@@ -16,20 +16,6 @@ bool Square::overlap(Shape *rhs){
          (minY <= square->maxY && maxY >= square->minY) &&
          (minZ <= square->maxZ && maxZ >= square->minZ);
 
-    /***
-    // when below square
-    if (minX >= square->maxX || square->minX >= maxX) {
-        return false;
-    }
-
-    // when above square
-    if (maxY <= square->minY || square->maxY <= minY) {
-        return false;
-    }
-    // a.minZ <= b.maxZ && b.minZ <= a.maxZ 
-    if (minZ >= square->maxZ || square->minZ >= maxZ) {
-        return false;
-    }*/
 }
 
 num Square::getMinX() {
