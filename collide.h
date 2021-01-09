@@ -1,12 +1,12 @@
 /**
- * @author Adanna Obibuaku
- * @copyright Adanna Obibuakue Newcastle University 2021
- * @purpose A namespace which will be commonly used for all objects of type shape.
+ * A class which will be commonly used for all objects of type shape.
  * This was made with the idea of extendabilty. When another shape object needs
  * to be added, the collision detection can be added here. 
  * 
+ * @author Adanna Obibuaku
+ * @copyright Adanna Obibuakue Newcastle University 2021
+ * @date 6/01/21
  */
-
 #ifndef SQUARE_HEADER
 #define SQUARE_HEADER
 
@@ -21,9 +21,10 @@
 
 #endif
 
+
+
 template <typename T, typename N>
 class Collide {
-
        public:
               Collide(T* shape, N* shape1);
               /**
@@ -63,57 +64,9 @@ class Collide {
 
 };
 
-template <typename T, typename N>
-Collide<T,N>::Collide(T* shape, N* shape1):shape(shape),shape1(shape1){
+#ifndef COLLIDE_IMP
+#define COLLIDE_IMP
 
-}
+#include "collide.cpp"
 
-template <typename T, typename N>
-bool Collide<T,N>::collision() {
-    if (shape->type() == shape1->type()) {
-        if (shape->type() == SQUARE) {
-            Square* rhs = (Square*) shape;
-            Square* lhs = (Square*) shape1;
-            return collision(lhs, rhs);
-
-        }
-        if (shape->type() == CIRCLE) {
-            Circle* rhs = (Circle*) shape;
-            Circle* lhs = (Circle*) shape1;
-            return collision(lhs, rhs);
-        }
-    } 
-    if (shape->type() == SQUARE && shape1->type() == CIRCLE)  {
-        Square* rhs = (Square*) shape;
-        Circle* lhs = (Circle*) shape1;
-        return collision(rhs, lhs);
-    }
-    if (shape->type() == CIRCLE && shape1->type() == SQUARE) {
-        Square* rhs = (Square*) shape1;
-        Circle* lhs = (Circle*) shape;
-        return collision(rhs, lhs);
-    }
-    return false;
-}
-
-template <typename T, typename N>
-bool Collide<T,N>::collision(Circle* lhs, Circle* rhs) {
-    num dx = lhs->getCenter().x - rhs->getCenter().x;
-    num dy = lhs->getCenter().y - rhs->getCenter().y;
-    num dz = lhs->getCenter().z - rhs->getCenter().z;
-    num distance = (dx*dx) + (dy*dy) + (dz*dz);
-    cout << "here";
-    num radSumAB = (lhs->getRadius() + rhs->getRadius()) * (lhs->getRadius() + rhs->getRadius());
-    return distance < radSumAB;
-}
-
-template <typename T, typename N>
-bool Collide<T,N>::collision(Square* lhs, Square* rhs) {
-    return (lhs->getMinX() <= rhs->getMaxX() && lhs->getMaxX() >= rhs->getMinX()) &&
-        (lhs->getMinY() <= rhs->getMaxY() && lhs->getMaxY() >= rhs->getMinY()) &&
-        (lhs->getMinZ() <= rhs->getMaxZ() && lhs->getMaxZ() >= rhs->getMinZ());
-}
-template <typename T, typename N>
-bool Collide<T,N>::collision(Square* lhs, Circle* rhs) {
-    return false;
-}
+#endif

@@ -1,8 +1,10 @@
 typedef float num;
+
 enum shapes{
     SQUARE,
     CIRCLE,
 };
+
 typedef enum shapes shape;
 
 #include <iostream>
@@ -38,11 +40,11 @@ class Shape {
         virtual void translate(coordinate move);
 
         /**
-         * Collison: used for determing whether another shape collides with another
-         * @param   Shape   rhs:   The shape which you want to move by
-         * @return  bool    Determines is there is an overlap 
+         * Collide: Will if two coordinates collide with one another
+         * @param   coordinate      Shape* rhs: will repersents the shape to move by
+         * @return  void 
          */
-        virtual bool overlap(Shape *rhs) = 0;
+        virtual bool collide(Shape* rhs) = 0;
 
         virtual shape type() = 0;
 
@@ -56,7 +58,4 @@ class Shape {
          * @return  string  A string repersentation of the shape
          */
         virtual string stringFormat();
-
-
-        virtual string showing() = 0;
 };

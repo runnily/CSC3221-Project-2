@@ -8,6 +8,7 @@ class Circle : public Shape {
 
 
     public:
+
         /**
          * Constructor for circle class
          * @param   coordinate  args: The center of the coordinate
@@ -20,7 +21,7 @@ class Circle : public Shape {
          * @param   Shape   rhs:   The shape which you want to move by
          * @return  bool    Determines is there is an overlap 
          */
-        virtual bool overlap(Shape *rhs);
+        virtual bool collide(Shape *rhs);
 
         /**
          * This is used for identifying the type of the shape.

@@ -4,6 +4,8 @@
 #include "shape.h"
 
 #endif
+
+
 /**
  * Class Square publicly inherits shape, and repersents all the properties of a shape
  */
@@ -19,11 +21,10 @@ class Square : public Shape {
 
         /**
          * This will determine if the shape overlaps or not with another given shape
-         * @param   Shape   rhs: This repersents the shape to test for an overlap.
+         * @param   Square   rhs: This repersents the square to test for an overlap.
          * @return bool     To specify whether there is an overlap
          */
-        virtual bool overlap(Shape *rhs);
-        // errors thrown if not the correct property of a square
+        virtual bool collide(Shape *rhs);
 
         /**
          * GetMinX: Will return the minimum of X out of all points

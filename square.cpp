@@ -4,8 +4,6 @@
 #include "square.h"
 
 #endif
-
-
 #ifndef COLLIDE_HEADER
 #define COLLIDE_HEADER
 
@@ -13,14 +11,13 @@
 
 #endif
 
-
 Square::Square(vector<coordinate> &args):minX(args[0].x),maxY(args[0].y),maxX(args[3].x),minY(args[3].y),minZ(args[0].z),maxZ(args[6].z),Shape(args) {
 }
 
-bool Square::overlap(Shape *rhs){
-    Collide<Square, Shape> c = Collide<Square,Shape>(this, rhs);
-    return true;
+bool Square::collide(Shape *rhs){
+    return Collide<Square, Shape>(this, rhs).collision();
 }
+
 
 num Square::getMinX() {
     return minX;
@@ -61,15 +58,16 @@ string Square::showing() {
     return "Sqaure";
 }
 
+/*
 int main() {
 
     //Square *square1 = dynamic_cast<Square*> (square);
     vector<coordinate> coords(4);
     coordinate points[4] = {
-        {5, 7},
-        {8, 7},
-        {5, 3},
-        {8, 3},
+        {5, 10},
+        {8, 10},
+        {5, 6},
+        {8, 6},
     };
 
     coordinate points1[4] = {
@@ -101,9 +99,9 @@ int main() {
     square->translate(coordinate {3,2});
 
     cout << *square;
-
-    cout << rhs->overlap(square);
+    Circle* circle = new Circle(coords, 50);
+    cout << rhs->collide(square);
 
     return 0;
-}
+}*/
 
