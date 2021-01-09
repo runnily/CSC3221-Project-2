@@ -5,6 +5,7 @@
 
 #endif
 
+
 Shape::Shape(vector<coordinate> &args):points(args) {
 };
 

@@ -5,17 +5,21 @@
 
 #endif
 
+
+#ifndef COLLIDE_HEADER
+#define COLLIDE_HEADER
+
+#include "collide.h"
+
+#endif
+
+
 Square::Square(vector<coordinate> &args):minX(args[0].x),maxY(args[0].y),maxX(args[3].x),minY(args[3].y),minZ(args[0].z),maxZ(args[6].z),Shape(args) {
 }
 
 bool Square::overlap(Shape *rhs){
-    // uses an AABB approach
-
-    Square *square = (Square*) rhs;
-    return (minX <= square->maxX && maxX >= square->minX) &&
-         (minY <= square->maxY && maxY >= square->minY) &&
-         (minZ <= square->maxZ && maxZ >= square->minZ);
-
+    Collide<Square, Shape> c = Collide<Square,Shape>(this, rhs);
+    return true;
 }
 
 num Square::getMinX() {
@@ -34,12 +38,27 @@ num Square::getMinY() {
     return minY;
 }
 
+num Square::getMinZ() {
+    return minZ;
+}
+
+num Square::getMaxZ() {
+    return maxZ;
+}
+
+shape Square::type() {
+    return SQUARE;
+}
 
 ostream& operator<< (ostream& ostream , Square& square) {
     ostream << endl;
     ostream << square.stringFormat();
     ostream << endl;
     return ostream;
+}
+
+string Square::showing() {
+    return "Sqaure";
 }
 
 int main() {
@@ -84,7 +103,6 @@ int main() {
     cout << *square;
 
     cout << rhs->overlap(square);
-
 
     return 0;
 }

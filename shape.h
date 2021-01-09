@@ -1,4 +1,10 @@
 typedef float num;
+enum shapes{
+    SQUARE,
+    CIRCLE,
+};
+typedef enum shapes shape;
+
 #include <iostream>
 #include <vector>
 using namespace std;
@@ -15,7 +21,7 @@ struct coordinate {num x; num y; num z;};
 
 
 class Shape {
-
+    
     public:
         /**
          * Constructor takes in a vector of coordinates
@@ -38,6 +44,8 @@ class Shape {
          */
         virtual bool overlap(Shape *rhs) = 0;
 
+        virtual shape type() = 0;
+
 
     protected:
         vector<coordinate> points;
@@ -48,4 +56,7 @@ class Shape {
          * @return  string  A string repersentation of the shape
          */
         virtual string stringFormat();
+
+
+        virtual string showing() = 0;
 };

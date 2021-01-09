@@ -23,6 +23,26 @@ class Circle : public Shape {
         virtual bool overlap(Shape *rhs);
 
         /**
+         * This is used for identifying the type of the shape.
+         * @return String used to identify to type of the shape.
+         */ 
+        virtual shape type();
+
+        /**
+         * getCenter: Will be used for returning the center of the circle
+         * @return coordinate   coordinate denoating the center
+         */
+        coordinate getCenter();
+
+        /**
+         * getRadius: Will be used for returning the radius of the circle
+         * @return num denotating the radius
+         */ 
+        num getRadius();
+
+        virtual string showing();
+
+        /**
          * Ostream: Repersents the output reperesentation of a class
          * @param ostream   ostream: A sequence of characters to write
          * @param Square    square:  The circle we want to write

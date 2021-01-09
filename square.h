@@ -32,22 +32,41 @@ class Square : public Shape {
         num getMinX();
 
         /**
-         * GetMinX: Will return the maximum of Y out of all points
+         * GetMaxX: Will return the maximum of Y out of all points
          * @return  num: the minimum y
          */
         num getMaxY();
 
         /**
-         * GetMinX: Will return the maximum of X out of all points
+         * GetMaxX: Will return the maximum of X out of all points
          * @return  num: the minimum x
          */
         num getMaxX();
 
         /**
-         * GetMinX: Will return the minimum of Y out of all points
+         * GetMinY: Will return the minimum of Y out of all points
          * @return  num: the minimum y
          */
         num getMinY();
+
+        /**
+         * GetMaxZ: Will return the maximum of Z out of all points
+         * @return  num: the minimum z
+         */
+        num getMaxZ();
+
+        /**
+         * GetMinZ: Will return the minimum of Z out of all points
+         * @return  num: the minimum z
+         */
+        num getMinZ();
+
+        /**
+         * This is used to return the type of the function
+         */
+        virtual shape type();
+
+        virtual string showing();
 
         /**
          * Ostream: Repersents the output reperesentation of a class

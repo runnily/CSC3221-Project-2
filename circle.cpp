@@ -26,6 +26,23 @@ ostream& operator<<(ostream& ostream , Circle& circle) {
     return ostream;
 }
 
+shape Circle::type() {
+    return CIRCLE;
+}
+
+coordinate Circle::getCenter() {
+    return center;
+}
+
+num Circle::getRadius() {
+    return radius;
+}
+
+string Circle::showing() {
+    return "circle";
+}
+
+/*
 int main() {
     vector<coordinate> vect(1);
     vector<coordinate> vect1(1);
@@ -38,4 +55,4 @@ int main() {
     cout << circle->overlap(circle1);
 
     return 0;
-}
+}*/
