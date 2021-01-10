@@ -19,11 +19,11 @@ class Game {
 
         void play();
 
-        void collide(vector<Shape* > group);
+        void collide(vector<Shape* >* group);
 
-        void bruteForce(vector<Shape* > group);
+        void bruteForce(vector<Shape* >* group);
 
-        void split(coordinate div, vector<Shape*> group1, vector<Shape*> group2);
+        void split(coordinate div, vector<Shape*>* group1, vector<Shape*>* group2);
 
         void remove(int i);
 
@@ -34,5 +34,5 @@ class Game {
     
     private:
         coordinate dim;
-        vector<Shape*> * shapes;
+        vector<Shape*>* shapes = new vector<Shape*>();
 };

@@ -58,6 +58,7 @@ class Collide {
                */
               bool collision(Square* lhs, Circle* rhs);
 
+
        private:
               T* shape;
               N* shape1;

@@ -47,9 +47,11 @@ const num Circle::getRadius() {
 }
 
 string Circle::showing() {
-    return "circle";
+    return stringFormat();
 }
 
+Circle::~Circle() {
+}
 /*
 int main() {
     vector<coordinate> vect(1);

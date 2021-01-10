@@ -18,7 +18,7 @@ Shape::Shape(vector<coordinate> &args):points(args) {
 };
 
 void Shape::translate(coordinate move) {
-    for (int i = 0; i < points.size() ; i++){ // loops through each vertex to move
+    for (int i = 0; i < points.size() ; i++){ // loops through each vertex to move add minus -1
         points[i].x += move.x;
         points[i].y += move.y;
         points[i].z += move.z;

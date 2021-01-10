@@ -82,7 +82,9 @@ class Square : public Shape {
          * @param ostream   ostream: A sequence of characters to write
          * @param Square    square:  The square we want to write
          */
-        friend ostream& operator<<(ostream& ostream , Square& circle);
+        friend ostream& operator<<(ostream& ostream , Square& square);
+
+        virtual ~Square();
 
     private:
         num minX;

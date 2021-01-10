@@ -59,6 +59,8 @@ class Circle : public Shape {
          */
         friend ostream& operator<<(ostream& ostream , Circle& circle);
 
+        virtual ~Circle();
+        
     private:
         num radius;
         coordinate center;

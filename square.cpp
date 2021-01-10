@@ -55,7 +55,7 @@ shape Square::type() {
     return SQUARE;
 }
 
-ostream& operator<< (ostream& ostream , Square& square) {
+ostream& operator<<(ostream& ostream , Square& square) {
     ostream << endl;
     ostream << square.stringFormat();
     ostream << endl;
@@ -63,7 +63,11 @@ ostream& operator<< (ostream& ostream , Square& square) {
 }
 
 string Square::showing() {
-    return "Sqaure";
+    return stringFormat();
+}
+
+Square::~Square() {
+
 }
 
 /*

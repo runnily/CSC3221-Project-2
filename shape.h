@@ -68,10 +68,9 @@ class Shape {
          */ 
         virtual const vector<coordinate> getCoord();
 
-         /**
-         * Deconstructor
-         */ 
+
         virtual ~Shape();
+       
         
 
     protected:
