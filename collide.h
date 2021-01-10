@@ -5,7 +5,7 @@
  * 
  * @author Adanna Obibuaku
  * @copyright Adanna Obibuakue Newcastle University 2021
- * @date 6/01/21
+ * @date 4/01/21
  */
 #ifndef SQUARE_HEADER
 #define SQUARE_HEADER

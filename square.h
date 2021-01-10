@@ -1,3 +1,11 @@
+/**
+ * This defines the shape type square. This class can also be used to repersent cubes.
+ * 
+ * @author Adanna Obibuaku
+ * @copyright Adanna Obibuaku Newcastle univeristy
+ * @date 4/01/21
+ */ 
+
 #ifndef SHAPE_HEADER
 #define SHAPE_HEADER
 

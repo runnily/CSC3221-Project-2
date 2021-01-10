@@ -1,3 +1,11 @@
+/**
+ * This module implements the abstract shape class. 
+ * 
+ * @author Adanna Obibuaku
+ * @copyright Adanna Obibuaku Newcastle univeristy
+ * @date 4/01/21
+ */ 
+
 #ifndef SHAPE_HEADER
 #define SHAPE_HEADER
 
@@ -24,3 +32,9 @@ string Shape::stringFormat() {
     }
     return str;
 }
+
+const vector<coordinate> Shape::getCoord() {
+    return points;
+}
+
+Shape::~Shape(){}

@@ -1,7 +1,7 @@
 
 /**
- * This is a implementation template for the collide class. This is used within the header 
- * file to allow the template class to be compiled by the C+ compiler.
+ * This is a implementation template for the collide class. This module is used within the header 
+ * file to allow the template class to be compiled by the C++ compiler.
  * 
  * @author Adanna Obibuaku
  * @copyright Adanna Obibuaku Newcastle univeristy
@@ -50,11 +50,20 @@ bool Collide<T,N>::collision() {
 
 template <typename T, typename N>
 bool Collide<T,N>::collision(Circle* lhs, Circle* rhs) {
-    num dx = lhs->getCenter().x - rhs->getCenter().x;
-    num dy = lhs->getCenter().y - rhs->getCenter().y;
-    num dz = lhs->getCenter().z - rhs->getCenter().z;
+
+    coordinate lhsCenter = lhs->getCenter();
+    num lhsRadius = lhs->getRadius();
+
+    coordinate rhsCenter = rhs->getCenter();
+    num rhsRadius = rhs->getRadius();
+
+    num dx = lhsCenter.x - rhsCenter.x;
+    num dy = lhsCenter.y - rhsCenter.y;
+    num dz = lhsCenter.z - rhsCenter.z;
+
     num distance = (dx*dx) + (dy*dy) + (dz*dz);
-    num radSumAB = (lhs->getRadius() + rhs->getRadius()) * (lhs->getRadius() + rhs->getRadius());
+
+    num radSumAB = (lhsRadius + rhsRadius) * (lhsRadius + rhsRadius);
     return distance < radSumAB;
 }
 
@@ -64,7 +73,18 @@ bool Collide<T,N>::collision(Square* lhs, Square* rhs) {
         (lhs->getMinY() <= rhs->getMaxY() && lhs->getMaxY() >= rhs->getMinY()) &&
         (lhs->getMinZ() <= rhs->getMaxZ() && lhs->getMaxZ() >= rhs->getMinZ());
 }
+
 template <typename T, typename N>
 bool Collide<T,N>::collision(Square* lhs, Circle* rhs) {
-    return false;
+    coordinate center = rhs->getCenter();
+    num radius = rhs->getRadius();
+    num Xn = max(lhs->getMinX(), min(center.x, lhs->getMaxX()));
+    num Xy = max(lhs->getMinY(), min(center.x, lhs->getMaxY()));
+    num Xz = max(lhs->getMinZ(), min(center.x, lhs->getMaxZ()));
+
+    num dx = (Xn - center.x);
+    num dy = (Xy - center.y);
+    num dz = (Xz - center.z);
+    num distance = (dx*dx) + (dy*dy) + (dz*dz);
+    return distance <= radius;
 }

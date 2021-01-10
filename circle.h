@@ -1,3 +1,12 @@
+/**
+ * This defines a circle class. This circle class can be used to repersent both 2D shapes circles,
+ * or 3D spheres.
+ * 
+ * @author Adanna Obibuaku
+ * @copyright Adanna Obibuaku Newcastle univeristy
+ * @date 4/01/21
+ */ 
+
 #ifndef SHAPE_HEADER
 #define SHAPE_HEADER
 
@@ -6,7 +15,7 @@
 #endif
 class Circle : public Shape {
 
-
+    
     public:
 
         /**
@@ -33,13 +42,13 @@ class Circle : public Shape {
          * getCenter: Will be used for returning the center of the circle
          * @return coordinate   coordinate denoating the center
          */
-        coordinate getCenter();
+        const coordinate getCenter();
 
         /**
          * getRadius: Will be used for returning the radius of the circle
          * @return num denotating the radius
          */ 
-        num getRadius();
+        const num getRadius();
 
         virtual string showing();
 

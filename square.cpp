@@ -1,3 +1,11 @@
+/**
+ * This implements the shape class
+ * 
+ * @author Adanna Obibuaku
+ * @copyright Adanna Obibuaku Newcastle univeristy
+ * @date 4/01/21
+ */ 
+
 #ifndef SQUARE_HEADER
 #define SQUARE_HEADER
 

@@ -1,4 +1,13 @@
-typedef float num;
+/**
+ * This defines a shape class. This is an abstract class used to reperesent all shape types.
+ * 
+ * @author Adanna Obibuaku
+ * @copyright Adanna Obibuaku Newcastle univeristy
+ * @date 4/01/21
+ */ 
+
+
+typedef float num; //incase I want to shape the type 
 
 enum shapes{
     SQUARE,
@@ -46,8 +55,24 @@ class Shape {
          */
         virtual bool collide(Shape* rhs) = 0;
 
+        /**
+         * Type: This would get the type of the shape
+         * @param shape to identify the given shape
+         */
         virtual shape type() = 0;
+        
 
+        /**
+         * getCoords: Will allow users to see the coords
+         * @return vector<coordinate> : The vector of coordinates
+         */ 
+        virtual const vector<coordinate> getCoord();
+
+         /**
+         * Deconstructor
+         */ 
+        virtual ~Shape();
+        
 
     protected:
         vector<coordinate> points;

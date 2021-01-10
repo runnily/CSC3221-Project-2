@@ -1,3 +1,11 @@
+/**
+ * This implements the circle class.
+ * 
+ * @author Adanna Obibuaku
+ * @copyright Adanna Obibuaku Newcastle univeristy
+ * @date 5/01/21
+ */ 
+
 #ifndef CIRCLE_HEADER
 #define CIRCLE_HEADER
 
@@ -19,7 +27,7 @@ bool Circle::collide(Shape *rhs){
     return Collide<Circle, Shape>(this, rhs).collision();
 }
 
-ostream& operator<<(ostream& ostream , Circle& circle) {
+ostream& operator<< (ostream& ostream , Circle& circle) {
     ostream << endl;
     ostream << circle.stringFormat() + "Radius: " + to_string(circle.radius);
     ostream << endl;
@@ -30,11 +38,11 @@ shape Circle::type() {
     return CIRCLE;
 }
 
-coordinate Circle::getCenter() {
+const coordinate Circle::getCenter() {
     return center;
 }
 
-num Circle::getRadius() {
+const num Circle::getRadius() {
     return radius;
 }
 
@@ -42,7 +50,7 @@ string Circle::showing() {
     return "circle";
 }
 
-
+/*
 int main() {
     vector<coordinate> vect(1);
     vector<coordinate> vect1(1);
@@ -54,5 +62,10 @@ int main() {
 
     cout << circle->collide(circle1);
 
+    Circle test = Circle(vect, 5);
+    Shape* shape = &test;
+
+    
+
     return 0;
-}
+}*/
