@@ -21,7 +21,8 @@ Game::Game(coordinate dim, vector<Shape*> shapes):dim(dim){
 void Game::play() {
     while (shapes->size() > 1) {
         //cout << "here";
-        (*this).bruteForce(shapes);
+        (*this).collide(shapes);
+        //(*this).bruteForce(shapes);
         (*this).translate();
     }
     
@@ -42,9 +43,14 @@ void Game::collide(vector<Shape*>* group) {
         split(ratio, group1, group2);
         (*this).collide(group1);
         (*this).collide(group2);
+
+        group->clear();
+        group->reserve(group1->size() + group2->size());
+        group->insert(group->end(), group1->begin(), group1->end());
+        group->insert(group->end(), group2->begin(), group2->end());
     }
     
-    (*this).bruteForce(shapes);
+    (*this).bruteForce(group);
     delete group1;
     delete group2;
     group1 = NULL;
@@ -101,20 +107,20 @@ void Game::output(Shape* lhs, Shape* rhs) {
     cout << "   COLLISION!\n";
     if (lhs->type() == SQUARE) {
         Square* square = (Square*) lhs;
-        cout << square->showing();
+        cout << *square;
     }
     if (lhs->type() == CIRCLE) {
         Circle* circle = (Circle*) lhs;
-        cout << circle->showing();
+        cout << *circle;
     }
     cout << endl;
     if (rhs->type() == SQUARE) {
         Square* square = (Square*) rhs;
-        cout << square->showing();
+        cout << *square;
     }
     if (rhs->type() == CIRCLE) {
         Circle* circle = (Circle*) rhs;
-        cout << circle->showing();
+        cout << *circle;
     }
     cout << "------------------------\n";
     lhs = nullptr;
