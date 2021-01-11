@@ -50,6 +50,9 @@ class Circle : public Shape {
          */ 
         const num getRadius();
 
+
+        virtual void translate(coordinate move);
+
         virtual string showing();
 
         /**

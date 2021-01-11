@@ -19,18 +19,16 @@ Game::Game(coordinate dim, vector<Shape*> shapes):dim(dim){
 }
 
 void Game::play() {
-    bruteForce(shapes);
+    while (shapes->size() > 1) {
+        //cout << "here";
+        (*this).bruteForce(shapes);
+        (*this).translate();
+    }
+    
     /*while (shapes->size() > 1) {
-        bruteForce(shapes);
-        num x = rand() % 10 + 1;
-        num y = rand() % 10 + 1;
-        //(*this).translate(coordinate {x, y});
-    }*/
-    /*while (shapes->size() > 1) {
+        cout << "here";
         (*this).collide(shapes);
-        num x = rand() % 10 + 1;
-        num y = rand() % 10 + 1;
-        (*this).translate(coordinate {x, y});
+        (*this).translate();
     }*/
   
 }
@@ -39,14 +37,11 @@ void Game::collide(vector<Shape*>* group) {
     vector<Shape* >* group1 = new vector<Shape* >(); // take advantage of heap memoery
     vector<Shape* >* group2 = new vector<Shape* >(); // disadvantage more memory use -> or a 2N operation
 
-    if (group->size() >= 4){
+    if (group->size() > 4){
         coordinate ratio = {dim.x/2};
         split(ratio, group1, group2);
-
         (*this).collide(group1);
-
         (*this).collide(group2);
-        cout << "here" << endl;
     }
     
     (*this).bruteForce(shapes);
@@ -60,6 +55,7 @@ void Game::split(coordinate div, vector<Shape*>* group1, vector<Shape* >* group2
     for (int i = 0; i < shapes->size(); i++) {
         Shape* shape = &(*(*shapes)[i]);
         num X = 0;
+        // performs a split
         if (shape->type() == CIRCLE) {
             Circle* circle = (Circle*) shape;
             X = circle->getCenter().x;
@@ -69,6 +65,7 @@ void Game::split(coordinate div, vector<Shape*>* group1, vector<Shape* >* group2
             X = square->getMaxX();
         }
 
+        // check if X is greater
         if (X >= div.x) {
             group1->push_back(shape);
         } else {
@@ -79,64 +76,72 @@ void Game::split(coordinate div, vector<Shape*>* group1, vector<Shape* >* group2
 }
 
 void Game::bruteForce(vector<Shape*>* group) {
-    for (int i = 0; i < group->size(); i++){
+    for (int i = 0; i < group->size(); i++) {
         for (int n = 0; n < group->size(); n++) {
-            if (n != i) {
-                if ((*group)[i]->collide((*group)[n])) {
-                    cout << "------------------------\n";
-                    cout << "COLLISION!\n";
-                    if ((*group)[i]->type() == SQUARE) {
-                        Square* square = (Square*) &(*(*group)[i]);
-                        cout << square->showing() << endl;
-                        square = NULL;
-                    }
-
-                    if ((*group)[i]->type() == CIRCLE) {
-                        Circle* circle = (Circle*) &(*(*group)[i]);
-                        cout << circle->showing() << endl;
-                        circle = NULL;
-                    }
-
-                    if ((*group)[n]->type() == SQUARE) {
-                        Square* square = (Square*) &(*(*group)[n]);
-                        cout << square->showing() << endl;
-                        square = NULL;
-                    }
-                    if ((*group)[n]->type() == CIRCLE) {
-                        Circle* circle = (Circle*) &(*(*group)[n]);
-                        cout << circle->showing() << endl;
-                        circle = NULL;
-                    }
-                    cout << "------------------------\n";
-
-                    delete (*group)[i];
-                    delete (*group)[n];
-                    
-                    group->erase(group->begin()+(i), group->begin()+(n));
-                    
+            if (i != n) {
+                if (group->at(n) != NULL && group->at(i) != NULL) {
+                    if (group->at(i)->collide(group->at(n))) {
+                        (*this).output(group->at(i), group->at(n));
+                        delete group->at(i);
+                        group->at(i) = nullptr;  
+            
+                        delete group->at(n);
+                        group->at(n) = nullptr;
+                        }
+                    } 
                 }
             }
         }
+    group->erase(std::remove(group->begin(), group->end(), nullptr), group->end()); // remove empty elements
     }
+
+
+void Game::output(Shape* lhs, Shape* rhs) {
+    cout << "------------------------\n";
+    cout << "   COLLISION!\n";
+    if (lhs->type() == SQUARE) {
+        Square* square = (Square*) lhs;
+        cout << square->showing();
+    }
+    if (lhs->type() == CIRCLE) {
+        Circle* circle = (Circle*) lhs;
+        cout << circle->showing();
+    }
+    cout << endl;
+    if (rhs->type() == SQUARE) {
+        Square* square = (Square*) rhs;
+        cout << square->showing();
+    }
+    if (rhs->type() == CIRCLE) {
+        Circle* circle = (Circle*) rhs;
+        cout << circle->showing();
+    }
+    cout << "------------------------\n";
+    lhs = nullptr;
+    rhs = nullptr;
 }
 
-void Game::translate(coordinate move) {
-    cout << "here";
+
+void Game::translate() {
     for (int i = 0; i < shapes->size(); i++) {
         num maxX = 0;
         num maxY = 0;
         if ((*shapes)[i]->type() == SQUARE) {
-            Square* square = (Square*) &(*(*shapes)[i]);
+            Square* square = (Square*) (*shapes)[i];
             maxX = square->getMaxX();
             maxY = square->getMaxY();
+
             
         } else {
             Circle* circle = (Circle*) (*shapes)[i];
             maxX = circle->getCenter().x;
             maxY = circle->getCenter().y;
         }
-        move.x = 2; //clamp(maxX+move.x, (float) 0, dim.x); // ensuring it stays within positions
-        move.y = 2; //clamp(maxY+move.y, (float) 0, dim.y); // ensuring it stays within positions
+        num x = (rand() % 3) + 1;
+        num y = (rand() % 3) + 1;
+        coordinate move = {x, y};
+        move.x = ((maxX + move.x) > dim.x) ? 0 : move.x;
+        move.y = ((maxY + move.y) > dim.y) ? 0 : move.y;
         (*shapes)[i]->translate(move);
     }
 }
@@ -160,18 +165,18 @@ vector<Shape*> setup(int numberOfSquares, int numberOfCircle, coordinate dim) {
         vector<coordinate> coords = {coordinate {minX,maxY}, coordinate{maxX,maxY}, coordinate{minX,minY}, coordinate{maxX,minY}};
         Square* s = new Square(coords);
         shapes.push_back(&(*s));
-        //s = NULL; // ensure s is pointing at nothing
+        s = NULL; // ensure s is pointing at nothing
     }
     for (int i = 0; i<numberOfSquares; i++) { 
-        num x = rand() % (int) dim.x/2 + 0;
-        num y = rand() % (int) dim.y/2 + 0;
+        num x = (rand() % (int) dim.x/2) + 1;
+        num y = (rand() % (int) dim.y/2) + 1;
         coordinate center = {x, y};
         vector<coordinate> coords(1);
         coords[0] = center;
-        num radius = rand() % (int) dim.x/2 + 0;
+        num radius = rand() % (int) dim.x/2 + 1;
         Circle* c = new Circle(coords, radius);
         shapes.push_back(&(*c));
-        //c = NULL; // ensure c is now pointing at nothing
+        c = NULL; // ensure c is now pointing at nothing
     }
     return shapes;
 
@@ -179,16 +184,10 @@ vector<Shape*> setup(int numberOfSquares, int numberOfCircle, coordinate dim) {
 
 int main() {
     coordinate dim = {10,10};
-    //setup(10,10, coordinate{10,10});
     vector<Shape*> v = setup(3, 3, dim);
-    for (int i=0; i<v.size(); i++) {
-        delete v[i];
-        v[i] = NULL;
-        cout << v[i];
-    }
-
+     
     Game start = Game(dim, v);
-    //start.play();
+    start.play();
    
     return 0;
 }

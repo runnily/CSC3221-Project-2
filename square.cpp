@@ -19,7 +19,7 @@
 
 #endif
 
-Square::Square(vector<coordinate> &args):minX(args[0].x),maxY(args[0].y),maxX(args[3].x),minY(args[3].y),minZ(args[0].z),maxZ(args[6].z),Shape(args) {
+Square::Square(vector<coordinate> &args):Shape(args),minX(args[0].x),maxY(args[0].y),maxX(args[3].x),minY(args[3].y),maxZ(args[6].z),minZ(args[0].z) {
 }
 
 bool Square::collide(Shape *rhs){
@@ -28,27 +28,28 @@ bool Square::collide(Shape *rhs){
 
 
 num Square::getMinX() {
-    return minX;
+    return points[0].x;
 }
 
 num Square::getMaxY() {
-    return maxY;
+    return points[0].y;
+
 }
 
 num Square::getMaxX() {
-    return maxX;
+    return points[3].x;
 }
 
 num Square::getMinY() {
-    return minY;
+    return points[3].y;
 }
 
 num Square::getMinZ() {
-    return minZ;
+    return points[0].z;
 }
 
 num Square::getMaxZ() {
-    return maxZ;
+    return points[6].z;
 }
 
 shape Square::type() {

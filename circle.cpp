@@ -19,7 +19,7 @@
 
 #endif
 
-Circle::Circle(vector<coordinate> &args, num radius):radius(radius),center(args[0]),Shape(args){
+Circle::Circle(vector<coordinate> &args, num radius):Shape(args),radius(radius),center(args[0]){
     
 }
 
@@ -42,12 +42,24 @@ const coordinate Circle::getCenter() {
     return center;
 }
 
+void Circle::translate(coordinate move) {
+    for (int i = 0; i < points.size() ; i++){ // loops through each vertex to move add minus -1
+        points[i].x += move.x;
+        points[i].y += move.y;
+        points[i].z += move.z;
+
+        center.x += move.x;
+        center.y += move.y;
+        center.z += move.z;
+    }
+}
+
 const num Circle::getRadius() {
     return radius;
 }
 
 string Circle::showing() {
-    return stringFormat();
+    return stringFormat() + "Radius: " + to_string(radius) + "\n";
 }
 
 Circle::~Circle() {
