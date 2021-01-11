@@ -19,7 +19,7 @@
 
 #endif
 
-Square::Square(vector<coordinate> &args):Shape(args),minX(args[0].x),maxY(args[0].y),maxX(args[3].x),minY(args[3].y),maxZ(args[6].z),minZ(args[0].z) {
+Square::Square(vector<coordinate> &args):Shape(args) {
 }
 
 bool Square::collide(Shape *rhs){

@@ -86,13 +86,4 @@ class Square : public Shape {
 
         virtual ~Square();
 
-    private:
-        num minX;
-        num maxY;
-
-        num maxX;
-        num minY;
-
-        num maxZ;
-        num minZ;
 };
