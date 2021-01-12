@@ -31,21 +31,15 @@ void Game::collide(vector<Shape*>* group, coordinate ratio) {
     vector<Shape* >* group1 = new vector<Shape* >(); // take advantage of heap memoery
     vector<Shape* >* group2 = new vector<Shape* >(); // disadvantage more memory use -> or a 2N operation
 
-    //cout << "before: " << group->size() << " " << ratio.x << endl ;
-    split(ratio, group, group1, group2);
+    split(ratio, group, group1, group2); // split
 
-    if (group1->size() != 0 && group2->size() != 0){
+    if (group1->size() != 0 && group2->size() != 0){ // if most of the shapes lies on one side dont use recursion
+
         ratio.x /= 2;
-
-        
-        //cout << group1->size() << " " << group2->size() << endl;
-        //cout << endl;
-
         (*this).collide(group1, ratio);
         (*this).collide(group2, ratio);
-
-
     }
+
     (*this).bruteForce(group);
     delete group1;
     delete group2;
@@ -74,7 +68,6 @@ void Game::split(coordinate div, vector<Shape*>* group, vector<Shape*>* group1, 
         } else {
             group2->push_back(shape);
         }
-        //cout << "Split :" << group1->size() << " " << group2->size() << endl;
     }
     group1 = nullptr;
     group2 = nullptr;
