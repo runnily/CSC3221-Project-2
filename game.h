@@ -32,6 +32,8 @@ class Game {
          */
         void play();
 
+        void collision();
+
         /**
          * Collide: This is used for to detect collisions within a vector by performing recursion function, 
          *          which splits a group of shapes in to 2 groups depending on the dimentions. values less 
@@ -79,8 +81,10 @@ class Game {
          */
         virtual ~Game();
 
+
     
     private:
         coordinate dim;
         vector<Shape*>* shapes = new vector<Shape*>();
+        vector<Shape*>* temp = new vector<Shape*>();
 };
