@@ -64,7 +64,7 @@ bool Collide<T,N>::collision(Circle* lhs, Circle* rhs) {
     num distance = (dx*dx) + (dy*dy) + (dz*dz);
 
     num radSumAB = (lhsRadius + rhsRadius) * (lhsRadius + rhsRadius);
-    return distance < radSumAB;
+    return distance <= radSumAB;
 }
 
 template <typename T, typename N>

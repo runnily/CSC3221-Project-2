@@ -37,9 +37,10 @@ class Game {
          *          which splits a group of shapes in to 2 groups depending on the dimentions. values less 
          *          than x dimenetions goes into 1, and values greater than x goes into the other. This is
          *          to used reduce the complexity. Performance O(nlog(n))
-         * @param   vector<shapes>  this takes in a vector of shapes
+         * @param   vector<shapes>  group - This takes in a vector of shapes
+         * @param   coordinate      ratio - This takes in a ratio of vectors
          */
-        void collide(vector<Shape* >* group);
+        void collide(vector<Shape* >* group, coordinate ratio);
 
         /**
          * BruteForce: This performs a bruteforce method. This goes through all shapes within the vector
@@ -65,7 +66,7 @@ class Game {
          * @param   vector<shape*>  group2 - pointer to a group of shapes
          * 
          */
-        void split(coordinate div, vector<Shape*>* group1, vector<Shape*>* group2);
+        void split(coordinate div, vector<Shape*>* group, vector<Shape*>* group1, vector<Shape*>* group2);
 
         /**
          * Translate: This will translate a vector of shapes.

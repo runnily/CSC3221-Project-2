@@ -26,9 +26,9 @@ void Shape::translate(coordinate move) {
 }
 
 string Shape::stringFormat() { 
-    string str = " ";
+    string str = "";
     for (coordinate c : points) { // loops through coordinates
-        str += to_string(c.x) + ", " + to_string(c.y) + "\n";
+        str += "(" + to_string(c.x) + ", " + to_string(c.y) + ")" + "\n";
     }
     return str;
 }

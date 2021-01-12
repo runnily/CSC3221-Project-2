@@ -50,7 +50,9 @@ class Circle : public Shape {
          */ 
         const num getRadius();
 
-
+        /**
+         * overrides the venter, to allow center to also be moved
+         */
         virtual void translate(coordinate move);
 
         virtual string showing();

@@ -21,35 +21,31 @@ Game::Game(coordinate dim, vector<Shape*> shapes):dim(dim){
 void Game::play() {
     while (shapes->size() > 1) {
         //cout << "here";
-        (*this).collide(shapes);
+        (*this).collide(shapes, dim);
         //(*this).bruteForce(shapes);
         (*this).translate();
     }
-    
-    /*while (shapes->size() > 1) {
-        cout << "here";
-        (*this).collide(shapes);
-        (*this).translate();
-    }*/
-  
 }
 
-void Game::collide(vector<Shape*>* group) {
+void Game::collide(vector<Shape*>* group, coordinate ratio) {
     vector<Shape* >* group1 = new vector<Shape* >(); // take advantage of heap memoery
     vector<Shape* >* group2 = new vector<Shape* >(); // disadvantage more memory use -> or a 2N operation
 
-    if (group->size() > 4){
-        coordinate ratio = {dim.x/2};
-        split(ratio, group1, group2);
-        (*this).collide(group1);
-        (*this).collide(group2);
+    //cout << "before: " << group->size() << " " << ratio.x << endl ;
+    split(ratio, group, group1, group2);
 
-        group->clear();
-        group->reserve(group1->size() + group2->size());
-        group->insert(group->end(), group1->begin(), group1->end());
-        group->insert(group->end(), group2->begin(), group2->end());
+    if (group1->size() != 0 && group2->size() != 0){
+        ratio.x /= 2;
+
+        
+        //cout << group1->size() << " " << group2->size() << endl;
+        //cout << endl;
+
+        (*this).collide(group1, ratio);
+        (*this).collide(group2, ratio);
+
+
     }
-    
     (*this).bruteForce(group);
     delete group1;
     delete group2;
@@ -57,9 +53,10 @@ void Game::collide(vector<Shape*>* group) {
     group2 = NULL;
 }
 
-void Game::split(coordinate div, vector<Shape*>* group1, vector<Shape* >* group2) {
-    for (int i = 0; i < shapes->size(); i++) {
-        Shape* shape = &(*(*shapes)[i]);
+void Game::split(coordinate div, vector<Shape*>* group, vector<Shape*>* group1, vector<Shape* >* group2) {
+    
+    for (int i = 0; i < group->size(); i++) {
+        Shape* shape = &(*(*group)[i]);
         num X = 0;
         // performs a split
         if (shape->type() == CIRCLE) {
@@ -77,8 +74,10 @@ void Game::split(coordinate div, vector<Shape*>* group1, vector<Shape* >* group2
         } else {
             group2->push_back(shape);
         }
+        //cout << "Split :" << group1->size() << " " << group2->size() << endl;
     }
-   
+    group1 = nullptr;
+    group2 = nullptr;
 }
 
 void Game::bruteForce(vector<Shape*>* group) {
@@ -103,8 +102,8 @@ void Game::bruteForce(vector<Shape*>* group) {
 
 
 void Game::output(Shape* lhs, Shape* rhs) {
-    cout << "------------------------\n";
-    cout << "   COLLISION!\n";
+    cout << "----------------\n";
+    cout << "COLLISION!\n";
     if (lhs->type() == SQUARE) {
         Square* square = (Square*) lhs;
         cout << *square;
@@ -122,7 +121,7 @@ void Game::output(Shape* lhs, Shape* rhs) {
         Circle* circle = (Circle*) rhs;
         cout << *circle;
     }
-    cout << "------------------------\n";
+    cout << "----------------\n";
     lhs = nullptr;
     rhs = nullptr;
 }
@@ -164,8 +163,8 @@ Game::~Game() {
 vector<Shape*> setup(int numberOfSquares, int numberOfCircle, coordinate dim) {
     vector<Shape*> shapes;
     for (int i = 0; i<numberOfSquares; i++) {
-        num minY = rand() % (int) dim.y/2 + 1;
-        num minX = rand() % (int) dim.x/2 + 1;
+        num minY = (rand() % (int) (dim.y/2)) + 1;
+        num minX = (rand() % (int) (dim.x/2)) + 1;
         num maxX = minX + minY;
         num maxY = minY + minY;
         vector<coordinate> coords = {coordinate {minX,maxY}, coordinate{maxX,maxY}, coordinate{minX,minY}, coordinate{maxX,minY}};
@@ -174,12 +173,12 @@ vector<Shape*> setup(int numberOfSquares, int numberOfCircle, coordinate dim) {
         s = NULL; // ensure s is pointing at nothing
     }
     for (int i = 0; i<numberOfSquares; i++) { 
-        num x = (rand() % (int) dim.x/2) + 1;
-        num y = (rand() % (int) dim.y/2) + 1;
+        num x = (rand() % (int) (dim.x)) + 1;
+        num y = (rand() % (int) (dim.y)) + 1;
         coordinate center = {x, y};
         vector<coordinate> coords(1);
         coords[0] = center;
-        num radius = rand() % (int) dim.x/2 + 1;
+        num radius = (rand() % (int) (dim.x)) + 1;
         Circle* c = new Circle(coords, radius);
         shapes.push_back(&(*c));
         c = NULL; // ensure c is now pointing at nothing
@@ -189,13 +188,11 @@ vector<Shape*> setup(int numberOfSquares, int numberOfCircle, coordinate dim) {
 }
 
 int main() {
-    coordinate dim = {10,10};
-    vector<Shape*> v = setup(3, 3, dim);
+    coordinate dim = {200,200};
+    vector<Shape*> v = setup(6, 6, dim);
      
     Game start = Game(dim, v);
     start.play();
    
     return 0;
 }
-
-

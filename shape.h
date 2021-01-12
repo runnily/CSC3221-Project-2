@@ -7,7 +7,7 @@
  */ 
 
 
-typedef float num; //incase I want to shape the type 
+typedef int num; //incase I want to shape the type 
 
 enum shapes{
     SQUARE,
