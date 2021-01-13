@@ -33,7 +33,6 @@ num Square::getMinX() {
 
 num Square::getMaxY() {
     return points[0].y;
-
 }
 
 num Square::getMaxX() {

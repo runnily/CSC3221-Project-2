@@ -31,9 +31,7 @@ class Game {
          *       when there is a collision)
          */
         void play();
-
-        void collision();
-
+        
         /**
          * Collide: This is used for to detect collisions within a vector by performing recursion function, 
          *          which splits a group of shapes in to 2 groups depending on the dimentions. values less 
@@ -42,7 +40,7 @@ class Game {
          * @param   vector<shapes>  group - This takes in a vector of shapes
          * @param   coordinate      ratio - This takes in a ratio of vectors
          */
-        void collide(vector<Shape* >* group, coordinate ratio);
+        vector<Shape*> collide(vector<Shape* >* group, coordinate ratio);
 
         /**
          * BruteForce: This performs a bruteforce method. This goes through all shapes within the vector
@@ -86,5 +84,4 @@ class Game {
     private:
         coordinate dim;
         vector<Shape*>* shapes = new vector<Shape*>();
-        vector<Shape*>* temp = new vector<Shape*>();
 };
