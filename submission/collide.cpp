@@ -21,7 +21,7 @@ Collide<T,N>::Collide(T* shape, N* shape1):shape(shape),shape1(shape1){
 
 template <typename T, typename N>
 bool Collide<T,N>::collision() {
-    // decicdes which shape it is
+    // decides which shape it is
     if (shape->type() == shape1->type()) {
         if (shape->type() == SQUARE) {
             Square* rhs = (Square*) shape;
