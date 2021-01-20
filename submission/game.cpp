@@ -219,8 +219,8 @@ vector<Shape*> setup(int numberOfSquares, int numberOfCircle, coordinate dim) {
 
 int main() {
     coordinate dim = {500,500}; // <-- adjust size here
-    int numberOfSqaure = 50;
-    int numberOfCircle = 60;
+    int numberOfSqaure = 50; // You can adjust number of squares
+    int numberOfCircle = 60; // You can adjust number of circles
     vector<Shape*> v = setup(numberOfSqaure , numberOfCircle, dim); 
     Game start = Game(dim, v);
     start.play();
