@@ -66,7 +66,7 @@ PROCESS TO A 3D EXTENTION
 
     For a collision, we have a collide class. This class is used for defining how shapes 
     collide. To allow a 3D extentions for the detection of 
-    
+
     (A) circle with circle: 
         we do as we did with considering a 2D position using a bouding circle method. An 
         additional variable to caculate the distance of the z coordinates of both circles 
@@ -81,15 +81,16 @@ PROCESS TO A 3D EXTENTION
         the sphere and the cube. Including another variable to work out the distance 
         between the z coordinate and the center.
 
-These 3D extentions for dectecting collision has already been consider and implemmented.
+These 3D extentions for dectecting collision has already been considered and implemmented.
 This is shown within the collide.cpp file.
 
 With the 3D extentions implemented, the circle and square class, can both act as a 2D 
-circle or square, or with as a 3D sphere or cube.
+circle or square, or as a 3D sphere or cube.
 
 (3) THE GAME WITH 3D SHAPES
     The game class works with only 2D shapes, however this can be easily adapted, by adding a z
-    coordinate to the dimentions we want our shapes to be within in.
+    coordinate to the dimentions we want our shapes to be within
+
 
 
 
