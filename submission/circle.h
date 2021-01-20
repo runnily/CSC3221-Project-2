@@ -55,8 +55,6 @@ class Circle : public Shape {
          */
         virtual void translate(coordinate move);
 
-        virtual string showing();
-
         /**
          * Ostream: Repersents the output reperesentation of a class
          * @param ostream   ostream: A sequence of characters to write

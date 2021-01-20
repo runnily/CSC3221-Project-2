@@ -52,5 +52,44 @@ This would allow the output of the test to show within the test.txt file.
 ------------------------------------------------------------------------------
 PROCESS TO A 3D EXTENTION
 
-To adapt to a 3D model, we add an z coordinate for optional 3D shape.
+(1) TRANSLATION WITH 3D SHAPES
+
+    To adapt to a 3D model, we add an z coordinate for the options of a 3D shape. Where 
+    we translate the shape, we do the same as the we did for translating 2D shapes, except 
+    this time we add an additional number to specfify the translation of the z coordinate.
+    The implemenations of the shape class, already considers the optional addition of 3D 
+    shape. This is achieved by including an additional variable within the struct called
+    z to take allow 3D shapes. The translate method would then take in a translations to 
+    adjust the position.
+
+(2) COLLISION WITH 3D SHAPES
+
+    For a collision, we have a collide class. This class is used for defining how shapes 
+    collide. To allow a 3D extentions for the detection of 
+    
+    (A) circle with circle: 
+        we do as we did with considering a 2D position using a bouding circle method. An 
+        additional variable to caculate the distance of the z coordinates of both circles 
+        and compare it with the distance
+    (B) square to square:
+        This follows the same procedures provided for a 2D axis-aligned bounding box (AABB). 
+        For 3D, we consider ensure the max z for either of the boxes is greater than then
+        minium of either of the boxes.
+    (C) square to circle
+        This follows the same procedures provided for an AABB and sphere with 2D shapes,
+        except we add an additonal variable to work out the closest z coordinate between
+        the sphere and the cube. Including another variable to work out the distance 
+        between the z coordinate and the center.
+
+These 3D extentions for dectecting collision has already been consider and implemmented.
+This is shown within the collide.cpp file.
+
+With the 3D extentions implemented, the circle and square class, can both act as a 2D 
+circle or square, or with as a 3D sphere or cube.
+
+(3) THE GAME WITH 3D SHAPES
+    The game class works with only 2D shapes, however this can be easily adapted, by adding a z
+    coordinate to the dimentions we want our shapes to be within in.
+
+
 

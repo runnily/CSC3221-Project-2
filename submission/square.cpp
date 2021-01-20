@@ -62,10 +62,6 @@ ostream& operator<<(ostream& ostream , Square& square) {
     return ostream;
 }
 
-string Square::showing() {
-    return stringFormat();
-}
-
 Square::~Square() {
 
 }

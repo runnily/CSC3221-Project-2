@@ -75,8 +75,6 @@ class Square : public Shape {
          */
         virtual shape type();
 
-        virtual string showing();
-
         /**
          * Ostream: Repersents the output reperesentation of a class
          * @param ostream   ostream: A sequence of characters to write

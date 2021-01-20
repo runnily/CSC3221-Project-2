@@ -58,9 +58,5 @@ const num Circle::getRadius() {
     return radius;
 }
 
-string Circle::showing() {
-    return stringFormat() + "Radius: " + to_string(radius) + "\n";
-}
-
 Circle::~Circle() {
 }

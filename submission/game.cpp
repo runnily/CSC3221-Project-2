@@ -117,8 +117,10 @@ void Game::output(Shape* shape, vector<Shape*> collisions) {
     cout << "COLLIDED WITH: " << endl;
     for (int i = 0; i<collisions.size(); i++) {
         if (shape->type() == SQUARE) {
+        square = (Square*) collisions[i];
         cout << *square << endl;
         } else {
+        circle = (Circle*) collisions[i];
         cout << *circle << endl;
         }
     }
@@ -186,13 +188,13 @@ void Game::removeShapes(vector<Shape*>* group, vector<int> positions) {
  * SetUp: This is a helper function which is called by main. This would allows us to 
  *        set up an vector of square and circles with random numbers. The dimentions 
  *        of the shape must be the same as the dimention of the dimention being used for 
- *        the game
+ *          
  */
 vector<Shape*> setup(int numberOfSquares, int numberOfCircle, coordinate dim) {
     vector<Shape*> shapes;
     for (int i = 0; i<numberOfSquares; i++) {
-        num minY = (rand() % (int) (dim.y)) + 1;
-        num minX = (rand() % (int) (dim.x)) + 1;
+        num minY = (rand() % (int) (dim.y/2)) + 1;
+        num minX = (rand() % (int) (dim.x/2)) + 1;
         num maxX = minX + minY;
         num maxY = minY + minY;
         vector<coordinate> coords = {coordinate {minX,maxY}, coordinate{maxX,maxY}, coordinate{minX,minY}, coordinate{maxX,minY}};
@@ -201,8 +203,8 @@ vector<Shape*> setup(int numberOfSquares, int numberOfCircle, coordinate dim) {
         s = NULL; // ensure s is pointing at nothing
     }
     for (int i = 0; i<numberOfCircle; i++) { 
-        num x = (rand() % (int) (dim.x)) + 1;
-        num y = (rand() % (int) (dim.y)) + 1;
+        num x = (rand() % (int) (dim.x/2)) + 1;
+        num y = (rand() % (int) (dim.y/2)) + 1;
         coordinate center = {x, y};
         vector<coordinate> coords(1);
         coords[0] = center;
@@ -210,7 +212,7 @@ vector<Shape*> setup(int numberOfSquares, int numberOfCircle, coordinate dim) {
         Circle* c = new Circle(coords, radius);
         shapes.push_back(&(*c));
         c = NULL; // ensure c is now pointing at nothing
-    }  
+    }
     return shapes;
 
 }

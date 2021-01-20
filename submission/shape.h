@@ -70,8 +70,6 @@ class Shape {
 
 
         virtual ~Shape();
-       
-        virtual string stringFormat();
 
     protected:
         vector<coordinate> points;
@@ -81,5 +79,5 @@ class Shape {
          *               used for the friend ostream function with shapes;
          * @return  string  A string repersentation of the shape
          */
-        //virtual string stringFormat();
+        virtual string stringFormat();
 };

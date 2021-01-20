@@ -14,3 +14,6 @@ circle.o: circle.cpp circle.h
 
 game.o: game.cpp game.h
 	$(CXX) -c -Wall -pedantic game.cpp
+
+clean: 
+	rm *.o test
