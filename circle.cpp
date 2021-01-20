@@ -64,22 +64,3 @@ string Circle::showing() {
 
 Circle::~Circle() {
 }
-/*
-int main() {
-    vector<coordinate> vect(1);
-    vector<coordinate> vect1(1);
-    vect[0] = coordinate {3, 4};
-    vect1[0] = coordinate {14, 18};
-
-    Shape *circle = new Circle(vect, 5);
-    Shape *circle1 = new Circle(vect1, 8);
-
-    cout << circle->collide(circle1);
-
-    Circle test = Circle(vect, 5);
-    Shape* shape = &test;
-
-    
-
-    return 0;
-}*/

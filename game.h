@@ -31,7 +31,7 @@ class Game {
          *       when there is a collision)
          */
         void play();
-        
+
         /**
          * Collide: This is used for to detect collisions within a vector by performing recursion function, 
          *          which splits a group of shapes in to 2 groups depending on the dimentions. values less 
@@ -56,7 +56,7 @@ class Game {
          * @param   Shape   lhs - The lhs shape
          * @param   Shape   rhs - The rhs shape
          */ 
-        void output(Shape* lhs, Shape* rhs);
+        void output(Shape* shape, vector<Shape*> collisions);
 
         /**
          * Split: This is used is used to split shapes into 2 groups, depending on their dimentions. This
@@ -74,10 +74,18 @@ class Game {
         void translate();
 
         /**
+         * RemoveShapes: This will remove a list of shapes specified by a list of positions
+         * @param   postions<int>   A list of positions to remove.
+         * @param   group<shapes*>  A vector of shapes.
+         */
+        void removeShapes(vector<Shape*>* group, vector<int> positions);
+
+        /**
          * Destructor to remove all the the vector of shapes from memory, including the shapes within
          * it
          */
         virtual ~Game();
+
 
 
     
